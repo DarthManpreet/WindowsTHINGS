@@ -42,7 +42,10 @@ dlldata.c
 
 # DNX
 project.lock.json
+<<<<<<< HEAD
 project.fragment.lock.json
+=======
+>>>>>>> d678585ea4eb1d372897fbb0f603e245d06194ab
 artifacts/
 
 *_i.c
@@ -143,9 +146,8 @@ publish/
 *.azurePubxml
 # TODO: Comment the next line if you want to checkin your web deploy settings
 # but database connection strings (with potential passwords) will be unencrypted
-#*.pubxml
-*.publishproj
-
+.publishproj
+*.pubxml
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
@@ -189,7 +191,10 @@ ClientBin/
 *~
 *.dbmdl
 *.dbproj.schemaview
+<<<<<<< HEAD
 *.jfm
+=======
+>>>>>>> d678585ea4eb1d372897fbb0f603e245d06194ab
 *.pfx
 *.publishsettings
 node_modules/
@@ -252,6 +257,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+<<<<<<< HEAD
 
 # CodeRush
 .cr/
@@ -259,3 +265,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+=======
+>>>>>>> d678585ea4eb1d372897fbb0f603e245d06194ab
