@@ -13,7 +13,7 @@
                 <TextBox x:Name="usernameBox" Margin="50,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" Width="353"/>
                 <Label x:Name="passwordLabel" Content="Password" HorizontalAlignment="Left" Margin="44,160,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
                 <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="50,197,0,0" VerticalAlignment="Top" Width="353" FontSize="20"/>
-                <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="328,240,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" FontSize="20" Background="#FF32D418" Click="loginButton_Click" FontWeight="Bold"/>
+                <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="328,240,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" FontSize="20" Background="#FF32D418" Click="loginButton_ClickAsync" FontWeight="Bold"/>
                 <Label x:Name="thingsLabel" Content="THINGS" Margin="155,21,155,0" VerticalAlignment="Top" Foreground="White" FontSize="36" VerticalContentAlignment="Center"/>
 
             </Grid>

@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace LoginForm
 {
@@ -20,26 +25,39 @@ namespace LoginForm
     /// </summary>
     public partial class MainWindow : Window
     {
+        HttpClient client = new HttpClient();
+
         public MainWindow()
         {
             InitializeComponent();
+            client.BaseAddress = new Uri("https://localhost:3000/api/");
+            ServicePointManager.ServerCertificateValidationCallback +=
+                    (sender, cert, chain, sslPolicyErrors) => true;
+
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
+        private async void loginButton_ClickAsync(object sender, RoutedEventArgs e)
         {
-            if(usernameBox.Text == String.Empty)
+            if (usernameBox.Text == String.Empty)
             {
                 MessageBox.Show("Please enter a username!", "Error");
                 return;
             }
 
-            if(passwordBox.Password == String.Empty)
+            if (passwordBox.Password == String.Empty)
             {
                 MessageBox.Show("Please enter a password!", "Error");
                 return;
             }
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            MessageBox.Show("You entered:\n\tUsername: " + usernameBox.Text + "\n\tPassword: " + passwordBox.Password, "Success");
+            JObject loginData = new JObject(new JProperty("username", usernameBox.Text), new JProperty("password", passwordBox.Password));
+
+            var response = await client.PostAsync("authenticate", new StringContent(loginData.ToString(), Encoding.UTF8, "application/json"));
+
+            MessageBox.Show(response.ToString());
+            //MessageBox.Show("You entered:\n\tUsername: " + usernameBox.Text + "\n\tPassword: " + passwordBox.Password, "Success");
         }
     }
 }
