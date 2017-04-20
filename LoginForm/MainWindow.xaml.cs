@@ -56,8 +56,17 @@ namespace LoginForm
 
             var response = await client.PostAsync("authenticate", new StringContent(loginData.ToString(), Encoding.UTF8, "application/json"));
 
-            MessageBox.Show(response.ToString());
-            //MessageBox.Show("You entered:\n\tUsername: " + usernameBox.Text + "\n\tPassword: " + passwordBox.Password, "Success");
+            if (response.IsSuccessStatusCode)
+            {
+                this.Hide();
+                Checkout checkout = new Checkout();
+                checkout.Owner = Application.Current.MainWindow;
+                checkout.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Credentials", "Error");
+            }
         }
     }
 }

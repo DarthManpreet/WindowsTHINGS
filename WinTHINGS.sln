@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm", "LoginForm\LoginForm.csproj", "{21668EF2-20BA-4209-BAE3-D54C135B5DF5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutForm", "CheckoutForm\CheckoutForm.csproj", "{3D8381B8-66E9-4EF5-A1E3-03DAC0492C10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTHINGS", "LoginForm\WinTHINGS.csproj", "{21668EF2-20BA-4209-BAE3-D54C135B5DF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{21668EF2-20BA-4209-BAE3-D54C135B5DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21668EF2-20BA-4209-BAE3-D54C135B5DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21668EF2-20BA-4209-BAE3-D54C135B5DF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D8381B8-66E9-4EF5-A1E3-03DAC0492C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D8381B8-66E9-4EF5-A1E3-03DAC0492C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D8381B8-66E9-4EF5-A1E3-03DAC0492C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D8381B8-66E9-4EF5-A1E3-03DAC0492C10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
