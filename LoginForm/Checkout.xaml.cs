@@ -42,7 +42,7 @@ namespace LoginForm
             string response = await client.GetStringAsync("view");
             //MessageBox.Show(response);
             var dt = JsonConvert.DeserializeObject<DataTable>(response);
-            MessageBox.Show(dt.Rows.ToString());
+            //MessageBox.Show(dt.Rows.ToString());
             checkoutGrid.ItemsSource = dt.AsDataView();
         }
     }
