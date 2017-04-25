@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginForm"
         mc:Ignorable="d"
-        Title="Checkout" Height="500" Width="800" MinWidth="800" MinHeight="500">
+        Title="Checkout" Height="400" Width="968" MinWidth="800" MinHeight="350">
     <Grid>
         <DockPanel>
             <Menu x:Name="menuBar" DockPanel.Dock="Top">
@@ -15,30 +15,69 @@
                     <MenuItem Header="_Quit"/>
                 </MenuItem>
             </Menu>
-            <StackPanel>
-                <DataGrid x:Name="checkoutGrid" Width="487" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" ColumnWidth="*" HeadersVisibility="Column" IsReadOnly="True" MaxHeight="301" Height="301" UseLayoutRounding="False">
+            <StackPanel x:Name="inventoryPanel" Orientation="Horizontal" Width="481" HorizontalAlignment="Left" VerticalAlignment="Top" Height="311">
+                <DataGrid x:Name="checkoutGrid" Width="471" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" ColumnWidth="*" HeadersVisibility="Column" IsReadOnly="True" MaxHeight="301" UseLayoutRounding="False" Margin="10,0,0,10">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Path=name}" >
+                        <DataGridTextColumn Header="Name" Binding="{Binding name}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Description" Binding="{Binding Path=description}">
+                        <DataGridTextColumn Header="Description" Binding="{Binding description}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Path=quantity}" >
+                        <DataGridTextColumn Header="Available" Binding="{Binding quantity}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <StackPanel x:Name="buttonPanel" Width="108" Margin="0,0,0,50">
+                <Button x:Name="addCart" Content="Add" Margin="20,100,10,0" Background="#FF0FD10F" Foreground="White" FontWeight="Bold" Click="addCart_Click"/>
+                <Button x:Name="removeCart" Content="Remove" Foreground="White" Background="Red" FontWeight="Bold" Margin="20,10,10,0" Click="removeCart_Click"/>
+                <Button x:Name="checkoutButton" Content="Checkout" Background="#FF0FD10F" Foreground="White" Margin="20,100,10,0" FontWeight="Bold" Click="checkoutButton_Click"/>
+            </StackPanel>
+            <StackPanel x:Name="cartPanel" Width="356" Margin="0,0,10,10" HorizontalAlignment="Right">
+                <DataGrid x:Name="checkoutCart" CanUserAddRows="False" Height="301" ColumnWidth="*" HeadersVisibility="Column" AutoGenerateColumns="False" Margin="10,0,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding name}" IsReadOnly="True" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Description" Binding="{Binding description}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Available" Binding="{Binding quantity}" IsReadOnly="True" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn CanUserSort="True" ClipboardContentBinding="{x:Null}" Header="Checkout">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox PreviewTextInput="OnPreviewTextInput" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
