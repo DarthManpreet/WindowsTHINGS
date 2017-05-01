@@ -1,22 +1,22 @@
-﻿<Window x:Name="checkout" x:Class="LoginForm.Checkout"
+﻿<Window x:Name="checkin" x:Class="LoginForm.Checkin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginForm"
         mc:Ignorable="d"
-        Title="Checkout" Height="400" Width="968" MinWidth="800" MinHeight="350">
+        Title="Checkin" Height="400" Width="968" MinWidth="800" MinHeight="350">
     <Grid>
         <DockPanel>
             <Menu x:Name="menuBar" DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem x:Name="checkinHeader" Header="Checkin" Click="checkinHeader_Click"/>
+                    <MenuItem x:Name="checkoutHeader" Header="Checkout" Click="checkoutHeader_Click"/>
                     <MenuItem Header="Request"/>
                     <MenuItem Header="_Quit"/>
                 </MenuItem>
             </Menu>
             <StackPanel x:Name="inventoryPanel" Orientation="Horizontal" Width="481" HorizontalAlignment="Left" VerticalAlignment="Top" Height="311">
-                <DataGrid x:Name="checkoutGrid" Width="471" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" ColumnWidth="*" HeadersVisibility="Column" IsReadOnly="True" MaxHeight="301" UseLayoutRounding="False" Margin="10,0,0,10">
+                <DataGrid x:Name="checkinGrid" Width="471" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" ColumnWidth="*" HeadersVisibility="Column" IsReadOnly="True" MaxHeight="301" UseLayoutRounding="False" Margin="10,0,0,10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding name}" >
                             <DataGridTextColumn.ElementStyle>
@@ -45,10 +45,10 @@
             <StackPanel x:Name="buttonPanel" Width="108" Margin="0,0,0,50">
                 <Button x:Name="addCart" Content="Add" Margin="20,100,10,0" Background="#FF0FD10F" Foreground="White" FontWeight="Bold" Click="addCart_Click"/>
                 <Button x:Name="removeCart" Content="Remove" Foreground="White" Background="Red" FontWeight="Bold" Margin="20,10,10,0" Click="removeCart_Click"/>
-                <Button x:Name="checkoutButton" Content="Checkout" Background="#FF0FD10F" Foreground="White" Margin="20,100,10,0" FontWeight="Bold" Click="checkoutButton_Click"/>
+                <Button x:Name="checkinButton" Content="Checkin" Background="#FF0FD10F" Foreground="White" Margin="20,100,10,0" FontWeight="Bold" Click="checkinButton_Click"/>
             </StackPanel>
             <StackPanel x:Name="cartPanel" Width="356" Margin="0,0,10,10" HorizontalAlignment="Right">
-                <DataGrid x:Name="checkoutCart" CanUserAddRows="False" Height="301" ColumnWidth="*" HeadersVisibility="Column" AutoGenerateColumns="False" Margin="10,0,0,0">
+                <DataGrid x:Name="checkinCart" CanUserAddRows="False" Height="301" ColumnWidth="*" HeadersVisibility="Column" AutoGenerateColumns="False" Margin="10,0,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding name}" IsReadOnly="True" >
                             <DataGridTextColumn.ElementStyle>

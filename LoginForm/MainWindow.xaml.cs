@@ -58,8 +58,15 @@ namespace LoginForm
 
             if (response.IsSuccessStatusCode)
             {
+                HttpHeaders headers = response.Headers;
+                IEnumerable<string> values;
+                string token = String.Empty;
+                if (headers.TryGetValues("token", out values))
+                {
+                    token = values.First();
+                }
                 this.Hide();
-                Checkout checkout = new Checkout();
+                Checkout checkout = new Checkout(token);
                 checkout.Owner = Application.Current.MainWindow;
                 checkout.Show();
             }

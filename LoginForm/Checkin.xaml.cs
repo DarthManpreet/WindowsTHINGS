@@ -24,14 +24,14 @@ namespace LoginForm
     /// <summary>
     /// Interaction logic for Checkout.xaml
     /// </summary>
-    public partial class Checkout : Window
+    public partial class Checkin : Window
     {
         HttpClient client = new HttpClient();
         DataTable inventory;
         DataTable cart = null;
         string token = String.Empty;
 
-        public Checkout(string token)
+        public Checkin(string token)
         {
             InitializeComponent();
             this.token = token;
@@ -48,7 +48,7 @@ namespace LoginForm
         {
             string response = await client.GetStringAsync("view");
             inventory = JsonConvert.DeserializeObject<DataTable>(response);
-            checkoutGrid.ItemsSource = inventory.AsDataView();
+            checkinGrid.ItemsSource = inventory.AsDataView();
         }
 
         private void addCart_Click(object sender, RoutedEventArgs e)
@@ -60,32 +60,32 @@ namespace LoginForm
                 cart.Columns["desiredAmount"].DefaultValue = 1;
             }
 
-            var selected = checkoutGrid.SelectedItems;
+            var selected = checkinGrid.SelectedItems;
             foreach (DataRowView item in selected)
             {
                 cart.ImportRow(item.Row);
             }
 
-            checkoutCart.ItemsSource = cart.AsDataView();
+            checkinCart.ItemsSource = cart.AsDataView();
         }
 
         private void removeCart_Click(object sender, RoutedEventArgs e)
         {
             if(cart != null)
             {
-                while (checkoutCart.SelectedItems.Count > 0)
+                while (checkinCart.SelectedItems.Count > 0)
                 {
-                    cart.Rows.RemoveAt(checkoutCart.SelectedIndex);
+                    cart.Rows.RemoveAt(checkinCart.SelectedIndex);
                 }
             }
         }
 
-        private async void checkoutButton_Click(object sender, RoutedEventArgs e)
+        private async void checkinButton_Click(object sender, RoutedEventArgs e)
         {
             List<string> errors = new List<string>();
             for(int i = 0; i < cart.Rows.Count; i++)
             {
-                var response = await client.PostAsync("a/checkout/" + cart.Rows[i]["item_id"] + "/" + "admin" + "/" + cart.Rows[i]["desiredAmount"], null);
+                var response = await client.PostAsync("a/admin/checkin/" + cart.Rows[i]["item_id"] + "/" + "admin" + "/" + cart.Rows[i]["desiredAmount"], null);
                 if (!response.IsSuccessStatusCode)
                 {
                     errors.Add(cart.Rows[i]["name"].ToString());
@@ -100,20 +100,20 @@ namespace LoginForm
 
             if(errors.Count > 0)
             {
-                MessageBox.Show("Unable to checkout the following item(s): \n" + string.Join(Environment.NewLine, errors));
+                MessageBox.Show("Unable to checkin the following item(s): \n" + string.Join(Environment.NewLine, errors));
             }
             else
             {
-                MessageBox.Show("All items successfully checked out!");
+                MessageBox.Show("All items successfully checkin out!");
             }
         }
 
-        private void checkinHeader_Click(object sender, RoutedEventArgs e)
+        private void checkoutHeader_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            Checkin checkin = new Checkin(token);
-            checkin.Owner = Application.Current.MainWindow;
-            checkin.Show();
+            Checkout checkout = new Checkout(token);
+            checkout.Owner = Application.Current.MainWindow;
+            checkout.Show();
         }
     }
 }
