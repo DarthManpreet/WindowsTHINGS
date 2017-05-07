@@ -9,10 +9,10 @@
     <Grid>
         <DockPanel>
             <Menu x:Name="menuBar" DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem x:Name="checkinHeader" Header="Checkin" Click="checkinHeader_Click"/>
-                    <MenuItem Header="Request"/>
-                    <MenuItem Header="_Quit"/>
+                <MenuItem x:Name="checkinHeader" Header="Checkin" Click="checkinHeader_Click"/>
+                <MenuItem x:Name="requestHeader" Header="Request" Click="requestHeader_Click"/>
+                <MenuItem x:Name="historyMenu" Header="History" Click="historyMenu_Click">
+                    <MenuItem x:Name="historyRecent" Header="Recent"/>
                 </MenuItem>
             </Menu>
             <StackPanel x:Name="inventoryPanel" Orientation="Horizontal" Width="481" HorizontalAlignment="Left" VerticalAlignment="Top" Height="311">

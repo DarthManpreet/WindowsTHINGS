@@ -34,6 +34,7 @@ namespace LoginForm
         public Checkout(string token)
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.token = token;
             client.BaseAddress = new Uri("https://localhost:3000/api/");
             client.DefaultRequestHeaders.Add("x-access-token", token);
@@ -114,6 +115,22 @@ namespace LoginForm
             Checkin checkin = new Checkin(token);
             checkin.Owner = Application.Current.MainWindow;
             checkin.Show();
+        }
+
+        private void requestHeader_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Requests request = new Requests(token);
+            request.Owner = Application.Current.MainWindow;
+            request.Show();
+        }
+
+        private void historyMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            HistoryRecent recent = new HistoryRecent(token);
+            recent.Owner = Application.Current.MainWindow;
+            recent.Show();
         }
     }
 }
