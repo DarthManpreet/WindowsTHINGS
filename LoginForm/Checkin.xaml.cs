@@ -34,7 +34,7 @@ namespace LoginForm
         public Checkin(string token)
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.token = token;
             client.BaseAddress = new Uri("https://localhost:3000/api/");
             client.DefaultRequestHeaders.Add("x-access-token", token);
@@ -123,6 +123,38 @@ namespace LoginForm
             Requests request = new Requests(token);
             request.Owner = Application.Current.MainWindow;
             request.Show();
+        }
+
+        private void historyRecent_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            HistoryRecent recent = new HistoryRecent(token);
+            recent.Owner = Application.Current.MainWindow;
+            recent.Show();
+        }
+
+        private void historyItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            HistoryItem item = new HistoryItem(token);
+            item.Owner = Application.Current.MainWindow;
+            item.Show();
+        }
+
+        private void historyDate_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            HistoryRange date = new HistoryRange(token);
+            date.Owner = Application.Current.MainWindow;
+            date.Show();
+        }
+
+        private void shoppingList_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Shopping_List list = new Shopping_List(token);
+            list.Owner = Application.Current.MainWindow;
+            list.Show();
         }
     }
 }

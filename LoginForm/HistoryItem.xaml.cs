@@ -1,6 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,27 +16,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.RegularExpressions;
 
 namespace LoginForm
 {
     /// <summary>
-    /// Interaction logic for Checkout.xaml
+    /// Interaction logic for HistoryItem.xaml
     /// </summary>
-    public partial class Checkout : Window
+    public partial class HistoryItem : Window
     {
         HttpClient client = new HttpClient();
-        DataTable inventory;
-        DataTable cart = null;
-        string token = String.Empty;
+        string token;
+        DataTable history = new DataTable();
 
-        public Checkout(string token)
+        public HistoryItem(string token)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -42,74 +39,60 @@ namespace LoginForm
                     (sender, cert, chain, sslPolicyErrors) => true;
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            Task t = loadInventory();
         }
 
-        private async Task loadInventory()
+        private async Task loadHistory(int entries, string name)
         {
-            string response = await client.GetStringAsync("view");
-            inventory = JsonConvert.DeserializeObject<DataTable>(response);
-            checkoutGrid.ItemsSource = inventory.AsDataView();
-        }
-
-        private void addCart_Click(object sender, RoutedEventArgs e)
-        {   
-            if (cart == null)
+            string response = await client.GetStringAsync("a/admin/history/by_item/" + name + "/" + entries);
+            history = JsonConvert.DeserializeObject<DataTable>(response);
+            if (history.Rows.Count == 0)
             {
-                cart = inventory.Clone();
-                cart.Columns.Add("desiredAmount");
-                cart.Columns["desiredAmount"].DefaultValue = 1;
-            }
-
-            var selected = checkoutGrid.SelectedItems;
-            foreach (DataRowView item in selected)
-            {
-                cart.ImportRow(item.Row);
-            }
-
-            checkoutCart.ItemsSource = cart.AsDataView();
-        }
-
-        private void removeCart_Click(object sender, RoutedEventArgs e)
-        {
-            if(cart != null)
-            {
-                while (checkoutCart.SelectedItems.Count > 0)
-                {
-                    cart.Rows.RemoveAt(checkoutCart.SelectedIndex);
-                }
-            }
-        }
-
-        private async void checkoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> errors = new List<string>();
-            for(int i = 0; i < cart.Rows.Count; i++)
-            {
-                var response = await client.PostAsync("a/checkout/" + cart.Rows[i]["item_id"] + "/" + "admin" + "/" + cart.Rows[i]["desiredAmount"], null);
-                if (!response.IsSuccessStatusCode)
-                {
-                    errors.Add(cart.Rows[i]["name"].ToString());
-                }
-            }
-
-            //Delete all rows from the cart datatable
-            cart.Clear();
-
-            //Refresh inventory
-            await loadInventory();
-
-            if(errors.Count > 0)
-            {
-                MessageBox.Show("Unable to checkout the following item(s): \n" + string.Join(Environment.NewLine, errors));
+                MessageBox.Show("No transaction for this item!");
             }
             else
             {
-                MessageBox.Show("All items successfully checked out!");
+                historyGrid.ItemsSource = history.AsDataView();
+            }
+        }
+
+        private async void newEntry_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            int num = -1;
+            try
+            {
+                num = int.Parse(entriesBox.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid entry format!");
+            }
+
+            if (num >= 0)
+            {
+                if (itemName.Text != string.Empty)
+                {
+                    await loadHistory(num, itemName.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Item Name is Required!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid entry number!");
             }
         }
 
         //Menu Bar Headers
+        private void checkoutHeader_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Checkout checkout = new Checkout(token);
+            checkout.Owner = Application.Current.MainWindow;
+            checkout.Show();
+        }
+
         private void checkinHeader_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -132,14 +115,6 @@ namespace LoginForm
             HistoryRecent recent = new HistoryRecent(token);
             recent.Owner = Application.Current.MainWindow;
             recent.Show();
-        }
-
-        private void historyItem_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            HistoryItem item = new HistoryItem(token);
-            item.Owner = Application.Current.MainWindow;
-            item.Show();
         }
 
         private void historyDate_Click(object sender, RoutedEventArgs e)

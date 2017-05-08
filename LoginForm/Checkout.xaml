@@ -11,9 +11,12 @@
             <Menu x:Name="menuBar" DockPanel.Dock="Top">
                 <MenuItem x:Name="checkinHeader" Header="Checkin" Click="checkinHeader_Click"/>
                 <MenuItem x:Name="requestHeader" Header="Request" Click="requestHeader_Click"/>
-                <MenuItem x:Name="historyMenu" Header="History" Click="historyMenu_Click">
-                    <MenuItem x:Name="historyRecent" Header="Recent"/>
+                <MenuItem x:Name="historyMenu" Header="History">
+                    <MenuItem x:Name="historyRecent" Header="Recent" Click="historyRecent_Click"/>
+                    <MenuItem x:Name="historyItem" Header="Item" Click="historyItem_Click"/>
+                    <MenuItem x:Name="historyRange" Header="Date Range" Click="historyDate_Click"/>
                 </MenuItem>
+                <MenuItem x:Name="shoppingListHeader" Header="Shopping List" Click="shoppingList_Click"/>
             </Menu>
             <StackPanel x:Name="inventoryPanel" Orientation="Horizontal" Width="481" HorizontalAlignment="Left" VerticalAlignment="Top" Height="311">
                 <DataGrid x:Name="checkoutGrid" Width="471" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" ColumnWidth="*" HeadersVisibility="Column" IsReadOnly="True" MaxHeight="301" UseLayoutRounding="False" Margin="10,0,0,10">

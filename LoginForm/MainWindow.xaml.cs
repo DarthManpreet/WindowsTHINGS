@@ -30,6 +30,7 @@ namespace LoginForm
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             client.BaseAddress = new Uri("https://localhost:3000/api/");
             ServicePointManager.ServerCertificateValidationCallback +=
                     (sender, cert, chain, sslPolicyErrors) => true;

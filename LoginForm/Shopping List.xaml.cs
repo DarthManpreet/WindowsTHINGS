@@ -20,14 +20,14 @@ using System.Windows.Shapes;
 namespace LoginForm
 {
     /// <summary>
-    /// Interaction logic for HistoryRecent.xaml
+    /// Interaction logic for Shopping_List.xaml
     /// </summary>
-    public partial class HistoryRecent : Window
+    public partial class Shopping_List : Window
     {
         HttpClient client = new HttpClient();
         string token;
-        DataTable history = new DataTable();
-        public HistoryRecent(string token)
+        DataTable list = new DataTable();
+        public Shopping_List(string token)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -38,39 +38,18 @@ namespace LoginForm
                     (sender, cert, chain, sslPolicyErrors) => true;
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            Task T = loadHistory(15);
+            Task t = loadList();
         }
 
-        private async Task loadHistory(int entries)
+        private async Task loadList()
         {
-            string response = await client.GetStringAsync("a/admin/history/recent/" + entries);
-            history = JsonConvert.DeserializeObject<DataTable>(response);
-            historyGrid.ItemsSource = history.AsDataView();
+            string response = await client.GetStringAsync("a/admin/shopping_list");
+            list = JsonConvert.DeserializeObject<DataTable>(response);
+            shoppingList.ItemsSource = list.AsDataView();
         }
 
-        private async void newEntry_ClickAsync(object sender, RoutedEventArgs e)
-        {
-            int num = -1;
-            try
-            {
-                num = int.Parse(entriesBox.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Invalid entry format!");
-            }
 
-            if (num >= 0)
-            {
-                await loadHistory(num);
-            }
-            else
-            {
-                MessageBox.Show("Invalid entry number!");
-            }
-        }
-
-        //Menu Bar Headers
+        //Menu Bars
         private void checkoutHeader_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -98,9 +77,9 @@ namespace LoginForm
         private void historyItem_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            HistoryItem histItem = new HistoryItem(token);
-            histItem.Owner = Application.Current.MainWindow;
-            histItem.Show();
+            HistoryItem item = new HistoryItem(token);
+            item.Owner = Application.Current.MainWindow;
+            item.Show();
         }
 
         private void historyDate_Click(object sender, RoutedEventArgs e)
@@ -111,12 +90,12 @@ namespace LoginForm
             date.Show();
         }
 
-        private void shoppingList_Click(object sender, RoutedEventArgs e)
+        private void historyRecent_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            Shopping_List list = new Shopping_List(token);
-            list.Owner = Application.Current.MainWindow;
-            list.Show();
+            HistoryRecent recent = new HistoryRecent(token);
+            recent.Owner = Application.Current.MainWindow;
+            recent.Show();
         }
     }
 }

@@ -69,17 +69,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HistoryItem.xaml.cs">
+      <DependentUpon>HistoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryRange.xaml.cs">
+      <DependentUpon>HistoryRange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HistoryRecent.xaml.cs">
       <DependentUpon>HistoryRecent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Requests.xaml.cs">
       <DependentUpon>Requests.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Shopping List.xaml.cs">
+      <DependentUpon>Shopping List.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
     <Page Include="Checkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Checkout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoryRange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +126,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Requests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shopping List.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Statistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

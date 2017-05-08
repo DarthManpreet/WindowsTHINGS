@@ -10,6 +10,12 @@
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="492">
             <MenuItem x:Name="checkoutMenu" Header="Checkout" Click="checkoutMenu_Click"/>
             <MenuItem x:Name="checkinMenu" Header="Checkin" Click="checkinMenu_Click"/>
+            <MenuItem x:Name="historyMenu" Header="History">
+                <MenuItem x:Name="historyRecent" Header="Recent" Click="historyRecent_Click"/>
+                <MenuItem x:Name="historyItem" Header="Item" Click="historyItem_Click"/>
+                <MenuItem x:Name="historyRange" Header="Date Range" Click="historyDate_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="shoppingListHeader" Header="Shopping List" Click="shoppingList_Click"/>
         </Menu>
         <TextBox x:Name="itemName" Height="23" Margin="10,46,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="itemNameLabel" HorizontalAlignment="Left" Margin="10,24,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Height="22" Width="62"/>
