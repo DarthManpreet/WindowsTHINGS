@@ -16,6 +16,7 @@
                 <MenuItem x:Name="historyItem" Header="Item" Click="historyItem_Click"/>
                 <MenuItem x:Name="historyRange" Header="Date Range" Click="historyDate_Click"/>
             </MenuItem>
+            <MenuItem x:Name="statsHeader" Header="Statistics" Click="stats_Click"/>
         </Menu>
         <DataGrid x:Name="shoppingList" Margin="10,24,10,10" AutoGenerateColumns="False" ColumnWidth="*" HeadersVisibility="Column" CanUserAddRows="False">
             <DataGrid.Columns>

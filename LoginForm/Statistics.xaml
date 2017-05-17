@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="Statistics" Height="400" Width="800">
     <Grid>
-        
+        <Menu x:Name="menuBar" DockPanel.Dock="Top" Height="19" VerticalAlignment="Top">
+            <MenuItem x:Name="checkoutHeader" Header="Checkout" Click="checkoutHeader_Click"/>
+            <MenuItem x:Name="checkinHeader" Header="Checkin" Click="checkinHeader_Click"/>
+            <MenuItem x:Name="requestHeader" Header="Request" Click="requestHeader_Click"/>
+            <MenuItem x:Name="historyMenu" Header="History" >
+                <MenuItem x:Name="historyRecent" Header="Recent" Click="historyRecent_Click"/>
+                <MenuItem x:Name="historyItem" Header="Item" Click="historyItem_Click"/>
+                <MenuItem x:Name="historyRange" Header="Date Range" Click="historyDate_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="shoppingListHeader" Header="Shopping List" Click="shoppingListHeader_Click"/>
+        </Menu>
+        <DataGrid x:Name="statsGrid" Margin="10,24,10,10" AutoGenerateColumns="False" ColumnWidth="*" HeadersVisibility="Column" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding name}" Header="Item Name"/>
+                <DataGridTextColumn Binding="{Binding description}" Header="Description"/>
+                <DataGridTextColumn Binding="{Binding Weekly Average}" Header="Weekly Average"/>
+                <DataGridTextColumn Binding="{Binding Net per Day}" Header="Net per Day"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

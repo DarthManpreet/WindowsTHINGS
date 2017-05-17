@@ -97,5 +97,13 @@ namespace LoginForm
             recent.Owner = Application.Current.MainWindow;
             recent.Show();
         }
+
+        private void stats_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            Statistics stats = new Statistics(token);
+            stats.Owner = Application.Current.MainWindow;
+            stats.Show();
+        }
     }
 }

@@ -17,6 +17,7 @@
                     <MenuItem x:Name="historyRange" Header="Date Range" Click="historyDate_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="shoppingList" Header="Shopping List" Click="shoppingList_Click"/>
+                <MenuItem x:Name="statsHeader" Header="Statistics" Click="stats_Click"/>
             </Menu>
             <StackPanel x:Name="inventoryPanel" Orientation="Horizontal" Width="481" HorizontalAlignment="Left" VerticalAlignment="Top" Height="311">
                 <DataGrid x:Name="checkinGrid" Width="471" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" ColumnWidth="*" HeadersVisibility="Column" IsReadOnly="True" MaxHeight="301" UseLayoutRounding="False" Margin="10,0,0,10">

@@ -16,6 +16,7 @@
                 <MenuItem x:Name="historyRange" Header="Date Range" Click="historyDate_Click"/>
             </MenuItem>
             <MenuItem x:Name="shoppingListHeader" Header="Shopping List" Click="shoppingList_Click"/>
+            <MenuItem x:Name="statsHeader" Header="Statistics" Click="stats_Click"/>
         </Menu>
         <TextBlock x:Name="entriesLabel" HorizontalAlignment="Left" Margin="10,24,0,0" TextWrapping="Wrap" Text="Number of Entries" VerticalAlignment="Top"/>
         <TextBox x:Name="entriesBox" HorizontalAlignment="Left" Height="23" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="637"/>

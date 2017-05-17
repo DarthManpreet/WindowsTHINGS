@@ -16,6 +16,7 @@
                 <MenuItem x:Name="historyItem" Header="Item" Click="historyItem_Click"/>
             </MenuItem>
             <MenuItem x:Name="shoppingListHeader" Header="Shopping List" Click="shoppingList_Click"/>
+            <MenuItem x:Name="statsHeader" Header="Statistics" Click="stats_Click"/>
         </Menu>
         <TextBlock x:Name="startDateLabel" Margin="10,24,714,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="14"/>
         <DatePicker x:Name="startDate" Margin="10,43,449,0" VerticalAlignment="Top"/>
